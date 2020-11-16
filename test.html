@@ -1,0 +1,62 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <title>React App</title>
+</head>
+
+<body>
+    <div id="app"></div>
+</body>
+<script type="text/babel">
+    class App extends React.Component {
+        state = {
+            name : 'Mounir',
+            age : 22
+        }
+        handleClick = async() => {
+            await this.setState({
+                name: 'Yoshi'
+            })
+        }
+        handleChange = async(e) => {
+            await this.setState({
+                name: e.target.value
+            })
+        }
+        handleSubmit = async(e) => {
+            e.preventDefault();
+            console.log('form: ', this.state.name)
+        }
+        /*handleMouseOver = (e) => {
+            console.log(e.target)
+        }
+        handleCopy = () => {
+            console.log('Not original :(')
+        }*/
+        render() {
+            return ( 
+                <div className="app-content">
+                    <h1> Hey Lucien! </h1>
+                    <span>Name: { this.state.name } Age: { this.state.age } </span>
+                    <button onClick={this.handleClick}>Click</button><br /><br />
+                    <form onSubmit={this.handleSubmit}>
+                        <input type='text' onChange={this.handleChange}/>
+                        <button>Submit</button>
+                    </form>
+                    
+                    {/*<button onMouseOver={this.handleMouseOver}>Hover me</button>
+                    <p onCopy={this.handleCopy}>Copy</p> */}
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'))
+</script>
+
+</html>
